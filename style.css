@@ -1,0 +1,346 @@
+@charset "UTF-8";
+
+/*---- Grundstil för webbsidan -----*/
+
+html {
+    font-size: 16px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html,
+body,
+nav,
+header,
+main,
+footer,
+section {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ----- Layout ----- */
+
+body {
+    background-color: #caeab3;
+    color: #02600a;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: grid;
+    grid-template-columns: auto minmax(auto, 900px) auto;
+    grid-template-rows: min-content min-content auto min-content;
+    grid-template-areas:
+        "nav     nav    nav"
+        "header header header"
+        ".      main   ."
+        "footer footer footer";
+}
+
+header {
+    grid-area: header;
+    background-color: #015d18;
+    color: #ffffff;
+    padding: 20px;
+}
+
+header h1,
+header h2 {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#frontPageHeader {
+    background-image: url("img/wok.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-size: 20px;
+}
+
+
+/* ------ Stil för sidans huvudinnehåll ----- */
+main {
+    grid-area: main;
+    background-color: #6fa372;
+    padding: 10px;
+}
+
+
+#recipe {
+    background-color: rgb(185, 220, 190);
+    padding: 20px;
+    margin-bottom: 30px 0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+#sauce {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.peanut {
+    border: solid rgb(2, 105, 54);
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.peanut p {
+    font-weight: bold;
+}
+
+.fish {
+    border: solid rgb(2, 105, 54);
+    padding: 10px;
+    margin: 20px 0;
+
+}
+
+.fish p {
+    font-weight: bold;
+}
+
+#meat {
+    display: flex;
+    gap: 2rem;
+    background-color: rgb(185, 220, 190);
+    padding: 20px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+#chicken {
+    display: flex;
+    gap: 2rem;
+    background-color: rgb(185, 220, 190);
+    padding: 20px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.ingrediense {
+    width: 30%;
+}
+
+.ingrediense p {
+    font-weight: bold;
+}
+
+.instruction p {
+    width: 70%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ------ Stil för sidfoten ----- */
+footer {
+    grid-area: footer;
+    background-color: #015d18;
+    color: #cccccc;
+    padding: 30px;
+    text-align: left;
+}
+
+
+/* ----- Navigeringen ----- */
+
+nav {
+    grid-area: nav;
+    background-color: #027048;
+    font-size: 1.1em;
+
+}
+
+nav ul {
+    /* Både yttre och inre listor */
+    list-style: none;
+    display: flex;
+    gap: 0.5em;
+    margin: 0;
+    padding: 10px;
+    justify-content: flex-end;
+    flex-direction: row;
+    transition: all .2s;
+
+}
+
+
+nav ul ul {
+    /* Endast inre listan */
+    background-color: #58856a;
+    box-shadow: 3px 3px 16px #a3d5c7;
+    flex-direction: column;
+    position: absolute;
+    visibility: hidden;
+}
+
+nav ul li:hover ul {
+    visibility: visible;
+}
+
+nav a {
+    background-color: #329b65;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    padding: 0.5em;
+}
+
+nav a:hover {
+    background-color: #9ad8b7;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+nav ul ul a {
+    background-color: unset;
+    color: #202322;
+    ;
+}
+
+nav a.home {
+    background-color: #30df05;
+}
+
+nav a.home:hover {
+    background-color: #9ad8b7;
+}
+
+
+/* ------ Media queries ----- */
+
+@media screen and (max-width:600px) {
+    body {
+        grid-template-columns: auto;
+        grid-template-rows: min-content min-content min-content auto min-content min-content;
+        grid-template-areas:
+            "nav"
+            "header"
+            "main"
+            "footer";
+    }
+
+    #menuicon {
+        background-image: url(img/menuicon.png);
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        margin-left: auto;
+    }
+
+    #menucheckbox {
+        display: none;
+    }
+
+    #menucheckbox~div ul {
+        /* Dölj menyn */
+        transform: translateY(-200px);
+        transition: transform 0.5s;
+    }
+
+    #menucheckbox:checked~div ul {
+        /* Visa menyn */
+        transform: translateY(0px);
+    }
+
+    nav {
+        position: relative;
+    }
+
+
+    nav ul {
+        flex-direction: column;
+        gap: 4px;
+        display: none;
+        padding: 0;
+        margin: 10px 0;
+        list-style: none;
+    }
+
+    nav ul ul {
+        display: flex;
+    }
+
+    #menucheckbox:checked+ul,
+    #menucheckbox:checked~ul {
+        display: flex;
+    }
+
+    nav a:hover {
+        transform: none;
+    }
+
+    /* Rubriker */
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    /* Recepten */
+    #meat,
+    #chicken {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ingrediense,
+    .instruction {
+        width: 100%;
+    }
+
+    /* Såser */
+
+    #sauce {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .peanut,
+    .fish {
+        width: 100%;
+    }
+
+    /* Bilder */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 1rem;
+    }
+}
